@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 export default (props) => {
@@ -9,7 +9,7 @@ export default (props) => {
     // invoke or reference directly
 
     console.log('render()');
-    const [count, setCount] = useState(238923923902390);
+    const [count, setCount] = useState(0);
 
     // const arrayOfStateManagementStuff = useState(0);
     // console.log(arrayOfStateManagementStuff);
@@ -22,9 +22,35 @@ export default (props) => {
     // second item will be a function that can be used to modify the count
 
 
-    const _increment = () => setCount(function() {
-        return count + 1;
-    });
+                                     // implicit return
+    const _increment = () => setCount(count + 1);
+
+    // Lifecycle method replication here
+
+    // // componentDidUpdate()
+    // useEffect(() => {
+    //     console.log('Runs after every update');
+    // })
+
+    // componentDidUpdate() - with a variable watch
+    useEffect(() => {
+        return console.log(`componentDidUpdate() - count is now ${count}`)
+    }, [count])
+
+    // componentDidMount()
+    useEffect(() => {
+        console.log('componentDidMount() - This should only run once')
+    }, []);
+
+    // componentWillUnmount()
+    useEffect(() => {
+        return () => {
+            console.log('componentWillUnmount() - Runs when the Component is removed');
+            // disconnect from network connections
+            // cancel any running timeouts
+            // remove any event listeners
+        }
+    }, [])
     
     return (
         <>
