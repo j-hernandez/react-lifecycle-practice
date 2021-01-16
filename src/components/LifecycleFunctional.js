@@ -1,36 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
+import IncrementButton from './IncrementButton';
+import DecrementButton from './DecrementButton';
+import ResetButton from './ResetButton';
 
 export default (props) => {
-
-    // this._increment will no longer work 
-    // now that we're in a functional component
-    // so we'll redeclare this as a constant and
-    // invoke or reference directly
-
     console.log('render()');
-    const [count, setCount] = useState(0);
 
-    // const arrayOfStateManagementStuff = useState(0);
-    // console.log(arrayOfStateManagementStuff);
-    // const count = arrayOfStateManagementStuff[0];
-    // const setCount = arrayOfStateManagementStuff[1];
-
-
-    // useState will create an array
-    // the first item will include a variable called count which will be set to 0
-    // second item will be a function that can be used to modify the count
-
-
-                                     // implicit return
+    // Setting up state
+    const [count, setCount] = useState(0);                   
     const _increment = () => setCount(count + 1);
 
-    // Lifecycle method replication here
+    // Create a decrement helper method here
+    const _decrement = () => setCount(count - 1);
 
-    // // componentDidUpdate()
-    // useEffect(() => {
-    //     console.log('Runs after every update');
-    // })
+    // Create a reset help method here
+    const _reset = () => setCount(function() {
+        return 0;
+    });
 
     // componentDidUpdate() - with a variable watch
     useEffect(() => {
@@ -46,19 +33,286 @@ export default (props) => {
     useEffect(() => {
         return () => {
             console.log('componentWillUnmount() - Runs when the Component is removed');
-            // disconnect from network connections
-            // cancel any running timeouts
-            // remove any event listeners
         }
     }, [])
     
     return (
         <>
             <h1>Lifecycle - Functional Component Demo {count}</h1>
-            <button onClick={_increment}>+</button>
-            <h2>App count: {props.appCount} </h2>
+            <IncrementButton clickHandler={_increment}>+</IncrementButton> 
+            <DecrementButton clickHandler={_decrement}>-</DecrementButton>
+            <ResetButton clickHandler={_reset}></ResetButton>
         </>
+
     );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
