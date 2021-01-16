@@ -8,9 +8,16 @@ class Lifecycle extends React.Component {
         this.state = {
             count: 0
         }
+
+        // When this is invoked, your component is not
+        // yet available in the DOM, meaning anything
+        // looking to pass data or otherwise to this
+        // component, will fail.
     }
 
     componentDidMount() {
+        // If you need to fetch data for your component from outside your
+        // app, you can use this method
         console.log('componentDidMount()');
     }
 
@@ -18,8 +25,17 @@ class Lifecycle extends React.Component {
         console.log('componentWillUnmount()');
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(previousProps, previousState, snapshot) {
         console.log('componentDidUpdate()');
+    }
+
+    _increment = () => {
+        console.log('_increment()');
+        this.setState({
+            count: this.state.count + 1
+        }, () => {
+            console.log('this.setState() finished')
+        })
     }
     
     render() {
@@ -33,14 +49,6 @@ class Lifecycle extends React.Component {
         );
     }
 
-    _increment = () => {
-        console.log('_increment()');
-        this.setState({
-            count: this.state.count + 1
-        }, () => {
-            console.log('this.setState() finished')
-        })
-    }
 }
 
 export default Lifecycle
